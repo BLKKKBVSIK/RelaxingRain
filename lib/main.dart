@@ -41,13 +41,12 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
-                height: MediaQuery.of(context).size.width * 0.60,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.contain,
-                    image: AssetImage('assets/picto.png'),
-                  ),
-                )),
+              height: MediaQuery.of(context).size.width * 0.60,
+              child: Hero(
+                tag: 'picto',
+                child: Image.asset('assets/picto.png'),
+              ),
+            ),
             Center(
                 child: RichText(
               text: TextSpan(
