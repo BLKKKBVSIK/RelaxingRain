@@ -1,7 +1,6 @@
 import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:relaxing_rain/kConstant.dart';
-import 'package:audio_service/audio_service.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:relaxing_rain/widgets/custom_slider_thumb.dart';
 
@@ -13,6 +12,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+
   bool playState = false;
   static AudioPlayer fixedPlayer = AudioPlayer(mode: PlayerMode.MEDIA_PLAYER);
   AudioCache audioCache = AudioCache(fixedPlayer: fixedPlayer);
@@ -29,6 +29,16 @@ class _HomepageState extends State<Homepage> {
 
   pauseLocal() async {
     fixedPlayer.pause();
+  }
+
+
+  @override
+  void initState() {
+    if (fixedPlayer.state == AudioPlayerState.PAUSED) {
+      playState = false;
+    } else {
+      playState = true;
+    }
   }
 
   Widget volumeSlider() {
