@@ -6,7 +6,7 @@ import 'package:relaxing_rain/screens/homepage.dart';
 
 void main() => runApp(
       DevicePreview(
-        enabled: !kReleaseMode,
+        enabled: false,//!kReleaseMode,
         builder: (context) => MyApp(),
       ),
     );
