@@ -20,6 +20,7 @@ dependencies:
   flutter:
     sdk: flutter
   audioplayers: ^0.15.1
+  device_preview: ^0.4.5
   
     
   # The following adds the Cupertino Icons font to your application.
@@ -47,7 +48,6 @@ flutter:
     - assets/picto.png
     - assets/rain.mp3
     - assets/rain.mp4
-    - lib/screens/rain.mp3
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

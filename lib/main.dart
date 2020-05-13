@@ -1,8 +1,15 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:relaxing_rain/kConstant.dart';
 import 'package:relaxing_rain/screens/homepage.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(
+      DevicePreview(
+        enabled: !kReleaseMode,
+        builder: (context) => MyApp(),
+      ),
+    );
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -10,6 +17,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     var routeName;
     return MaterialApp(
+      locale: DevicePreview.of(context).locale, // <--- Add the locale
+      builder: DevicePreview.appBuilder, // <--- Add the builder
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

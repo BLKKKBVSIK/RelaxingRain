@@ -34,10 +34,10 @@ class _HomepageState extends State<Homepage> {
 
   @override
   void initState() {
-    if (fixedPlayer.state == AudioPlayerState.PAUSED) {
-      playState = false;
-    } else {
+    if (fixedPlayer.state == AudioPlayerState.PLAYING) {
       playState = true;
+    } else {
+      playState = false;
     }
   }
 
