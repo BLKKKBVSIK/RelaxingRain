@@ -6,7 +6,7 @@ import 'package:relaxing_rain/screens/homepage.dart';
 
 void main() => runApp(
       DevicePreview(
-        enabled: false,//!kReleaseMode,
+        enabled: false, //!kReleaseMode,
         builder: (context) => MyApp(),
       ),
     );
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       locale: DevicePreview.of(context).locale, // <--- Add the locale
       builder: DevicePreview.appBuilder, // <--- Add the builder
-      title: 'Flutter Demo',
+      title: 'Relaxing Rain',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
