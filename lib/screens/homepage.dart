@@ -66,50 +66,51 @@ class _HomepageState extends State<Homepage> {
               ),
             ),
           ),
-          SafeArea(
-            child: Row(
-              children: <Widget>[
-                NavigationRail(
-                  backgroundColor: Colors.transparent,
-                  selectedIndex: _selectedIndex,
-                  onDestinationSelected: (int index) {
-                    setState(() {
-                      _selectedIndex = index;
-                    });
-                  },
-                  labelType: NavigationRailLabelType.selected,
-                  destinations: [
-                    NavigationRailDestination(
-                      icon: Icon(Icons.ac_unit, color: Colors.white),
-                      selectedIcon: Icon(Icons.ac_unit, color: Colors.white),
-                      label: Text(
-                        'Rain',
-                        style: TextStyle(color: Colors.white),
+            Padding(
+              padding: const EdgeInsets.only(top: 30),
+              child: Row(
+                children: <Widget>[
+                  NavigationRail(
+                    backgroundColor: Colors.transparent,
+                    selectedIndex: _selectedIndex,
+                    onDestinationSelected: (int index) {
+                      setState(() {
+                        _selectedIndex = index;
+                      });
+                    },
+                    labelType: NavigationRailLabelType.selected,
+                    destinations: [
+                      NavigationRailDestination(
+                        icon: Icon(Icons.ac_unit, color: Colors.white),
+                        selectedIcon: Icon(Icons.ac_unit, color: Colors.white),
+                        label: Text(
+                          'Rain',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(Icons.bookmark_border, color: Colors.white),
-                      selectedIcon: Icon(Icons.book, color: Colors.white),
-                      label: Text(
-                        'Rain2',
-                        style: TextStyle(color: Colors.white),
+                      NavigationRailDestination(
+                        icon: Icon(Icons.bookmark_border, color: Colors.white),
+                        selectedIcon: Icon(Icons.book, color: Colors.white),
+                        label: Text(
+                          'Rain2',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(Icons.star_border, color: Colors.white),
-                      selectedIcon: Icon(Icons.star, color: Colors.white),
-                      label: Text(
-                        'Rain3',
-                        style: TextStyle(color: Colors.white),
+                      NavigationRailDestination(
+                        icon: Icon(Icons.star_border, color: Colors.white),
+                        selectedIcon: Icon(Icons.star, color: Colors.white),
+                        label: Text(
+                          'Rain3',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                getRightContentCards(_selectedIndex),
-                //ContentCards(selectedIndex: _selectedIndex,),
-              ],
+                    ],
+                  ),
+                  getRightContentCards(_selectedIndex),
+                  //ContentCards(selectedIndex: _selectedIndex,),
+                ],
+              ),
             ),
-          ),
         ],
       ),
     );
@@ -118,7 +119,7 @@ class _HomepageState extends State<Homepage> {
   Widget getRightContentCards(int selectedIndex) {
     switch (selectedIndex) {
       case 0:
-        return ContentCards(selectedIndex: _selectedIndex, bgColor: kBlueBackground);
+        return ContentCards(selectedIndex: _selectedIndex, bgColor: kBlueCardBackground);
         break;
       case 1:
         return ContentCards(selectedIndex: _selectedIndex, bgColor: kBlueishDye);

@@ -1,6 +1,7 @@
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
 import 'package:relaxing_rain/kConstant.dart';
 import 'package:relaxing_rain/widgets/custom_slider_thumb.dart';
 
@@ -41,66 +42,74 @@ class _ContentCardsState extends State<ContentCards> {
               tag: 'picto',
               child: Image.asset(
                 'assets/picto.png',
-                height: 200,
-                width: 200,
+                height: MediaQuery.of(context).size.height * .25,
+                width: MediaQuery.of(context).size.width * .25,
               ),
             ),
           ),
           Expanded(
             child: Container(
-                width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.symmetric(vertical: 20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(30)),
-                  color: widget.bgColor,
-                ),
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(
-                      height: MediaQuery.of(context).size.width * .08,
-                    ),
-                    Text(
-                      "Breathe and focus" + widget.selectedIndex.toString() ,
-                      style: TextStyle(color: Colors.white, fontSize: 30),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.width * .08,
-                    ),
-                    Expanded(
-                      child: InkWell(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(30)),
+                color: widget.bgColor,
+              ),
+              child: SingleChildScrollView(
+                child: Container(
+                  height: MediaQuery.of(context).size.height * .64,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      Text(
+                        "Breathe and focus" + widget.selectedIndex.toString(),
+                        style: TextStyle(color: Colors.white, fontSize: 30),
+                      ),
+                      InkWell(
                         onTap: () {
                           fixedPlayer.state == AudioPlayerState.PLAYING
                               ? pauseLocal()
                               : playLocal();
                           setState(() {
                             playState = !playState;
+                            iconRightSize();
                           });
                         },
                         child: playState
                             ? Icon(
                                 Icons.pause_circle_outline,
                                 color: Colors.white,
-                                size: MediaQuery.of(context).size.width * .4,
+                                size: iconRightSize(),
                               )
-                            : Icon(
-                                Icons.play_circle_outline,
-                                color: Colors.white,
-                                size: MediaQuery.of(context).size.width * .4,
+                            : Container(
+                                constraints: BoxConstraints(maxHeight: 100),
+                                child: Icon(
+                                  Icons.play_circle_outline,
+                                  color: Colors.white,
+                                  size: iconRightSize(),
+                                ),
                               ),
                       ),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.width * .08,
-                    ),
-                    volumeSlider()
-                  ],
-                )),
-          )
+                      volumeSlider(),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
 
+  double iconRightSize() {
+    if (MediaQuery.of(context).orientation == Orientation.landscape || Platform.isMacOS || Platform.isWindows || Platform.isLinux) {
+      return MediaQuery.of(context).size.width * .1;
+    } else {
+      return MediaQuery.of(context).size.width * .4;
+    }
+  }
+ 
   playLocal() async {
     if (fixedPlayer.state == AudioPlayerState.PAUSED) {
       fixedPlayer.resume();

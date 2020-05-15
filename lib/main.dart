@@ -44,16 +44,19 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        padding: EdgeInsets.all(20),
         color: kBlueBackground,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Container(
-              height: MediaQuery.of(context).size.width * 0.60,
-              child: Hero(
-                tag: 'picto',
-                child: Image.asset('assets/picto.png'),
+            Flexible(
+              child: Container(
+                height: MediaQuery.of(context).size.width * 0.60,
+                child: Hero(
+                  tag: 'picto',
+                  child: Image.asset('assets/picto.png'),
+                ),
               ),
             ),
             Center(
