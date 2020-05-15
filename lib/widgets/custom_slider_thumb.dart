@@ -28,6 +28,8 @@ class CustomSliderThumbCircle extends SliderComponentShape {
     SliderThemeData sliderTheme,
     TextDirection textDirection,
     double value,
+    double textScaleFactor,
+    Size sizeWithOverflow,
   }) {
     final Canvas canvas = context.canvas;
 
