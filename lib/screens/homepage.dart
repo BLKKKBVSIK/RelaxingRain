@@ -43,8 +43,8 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     var time = DateTime.now().millisecondsSinceEpoch / 2000;
-    var scaleX = 1.2 + sin(time) * .05;
-    var scaleY = 1.2 + cos(time) * .07;
+    var scaleX = 1.2 + sin(time) * .11;
+    var scaleY = 1.2 + cos(time) * .1;
     var offsetY = 20 + cos(time) * 20;
 
     return Scaffold(
@@ -66,49 +66,70 @@ class _HomepageState extends State<Homepage> {
               ),
             ),
           ),
-          Row(
-            children: <Widget>[
-              NavigationRail(
-                backgroundColor: Colors.transparent,
-                selectedIndex: _selectedIndex,
-                onDestinationSelected: (int index) {
-                  setState(() {
-                    _selectedIndex = index;
-                  });
-                },
-                labelType: NavigationRailLabelType.selected,
-                destinations: [
-                  NavigationRailDestination(
-                    icon: Icon(Icons.ac_unit, color: Colors.white),
-                    selectedIcon: Icon(Icons.ac_unit, color: Colors.white),
-                    label: Text(
-                      'Rain',
-                      style: TextStyle(color: Colors.white),
+          SafeArea(
+            child: Row(
+              children: <Widget>[
+                NavigationRail(
+                  backgroundColor: Colors.transparent,
+                  selectedIndex: _selectedIndex,
+                  onDestinationSelected: (int index) {
+                    setState(() {
+                      _selectedIndex = index;
+                    });
+                  },
+                  labelType: NavigationRailLabelType.selected,
+                  destinations: [
+                    NavigationRailDestination(
+                      icon: Icon(Icons.ac_unit, color: Colors.white),
+                      selectedIcon: Icon(Icons.ac_unit, color: Colors.white),
+                      label: Text(
+                        'Rain',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.bookmark_border, color: Colors.white),
-                    selectedIcon: Icon(Icons.book, color: Colors.white),
-                    label: Text(
-                      'Rain2',
-                      style: TextStyle(color: Colors.white),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.bookmark_border, color: Colors.white),
+                      selectedIcon: Icon(Icons.book, color: Colors.white),
+                      label: Text(
+                        'Rain2',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.star_border, color: Colors.white),
-                    selectedIcon: Icon(Icons.star, color: Colors.white),
-                    label: Text(
-                      'Rain3',
-                      style: TextStyle(color: Colors.white),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.star_border, color: Colors.white),
+                      selectedIcon: Icon(Icons.star, color: Colors.white),
+                      label: Text(
+                        'Rain3',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              ContentCards(),
-            ],
+                  ],
+                ),
+                getRightContentCards(_selectedIndex),
+                //ContentCards(selectedIndex: _selectedIndex,),
+              ],
+            ),
           ),
         ],
       ),
     );
+  }
+
+  Widget getRightContentCards(int selectedIndex) {
+    switch (selectedIndex) {
+      case 0:
+        return ContentCards(selectedIndex: _selectedIndex, bgColor: kBlueBackground);
+        break;
+      case 1:
+        return ContentCards(selectedIndex: _selectedIndex, bgColor: kBlueishDye);
+        break;
+      case 2:
+        return ContentCards(selectedIndex: _selectedIndex, bgColor: Colors.deepOrange,);
+        break;
+      default:
+        return Container();
+        break;
+    }
+
   }
 }

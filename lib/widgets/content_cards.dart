@@ -5,6 +5,11 @@ import 'package:relaxing_rain/kConstant.dart';
 import 'package:relaxing_rain/widgets/custom_slider_thumb.dart';
 
 class ContentCards extends StatefulWidget {
+  int selectedIndex;
+  Color bgColor;
+
+  ContentCards({this.selectedIndex, this.bgColor});
+
   @override
   _ContentCardsState createState() => _ContentCardsState();
 }
@@ -47,7 +52,7 @@ class _ContentCardsState extends State<ContentCards> {
                 padding: EdgeInsets.symmetric(vertical: 20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(30)),
-                  color: kBlueBackground,
+                  color: widget.bgColor,
                 ),
                 child: Column(
                   children: <Widget>[
@@ -55,7 +60,7 @@ class _ContentCardsState extends State<ContentCards> {
                       height: MediaQuery.of(context).size.width * .08,
                     ),
                     Text(
-                      "Breathe and focus",
+                      "Breathe and focus" + widget.selectedIndex.toString() ,
                       style: TextStyle(color: Colors.white, fontSize: 30),
                     ),
                     SizedBox(
