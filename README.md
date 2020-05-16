@@ -1,3 +1,7 @@
+<p align="center"><img alt="RelaxingRain Logo" src="https://user-images.githubusercontent.com/20175372/82129254-ab800e80-97c1-11ea-9990-e7adc3c5aeb9.png" height="200px"></p>
+
+
+
 # relaxing_rain
 
 A new Flutter project.
