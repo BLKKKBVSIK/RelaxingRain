@@ -2,7 +2,7 @@
 
 
 
-# relaxing_rain
+# Relaxing Rain
 
 A new Flutter project.
 
