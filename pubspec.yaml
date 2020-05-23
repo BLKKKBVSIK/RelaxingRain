@@ -56,7 +56,6 @@ flutter:
   assets:
     - assets/picto.png
     - assets/rain.mp3
-    - assets/rain.mp4
     - assets/background.png
   #  - images/a_dot_ham.jpeg
 
