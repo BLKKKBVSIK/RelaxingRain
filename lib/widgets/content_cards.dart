@@ -2,7 +2,6 @@ import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
-import 'package:relaxing_rain/kConstant.dart';
 import 'package:relaxing_rain/widgets/custom_slider_thumb.dart';
 
 class ContentCards extends StatefulWidget {
@@ -62,7 +61,7 @@ class _ContentCardsState extends State<ContentCards> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
                       Text(
-                        "Breathe and focus" + widget.selectedIndex.toString(),
+                        "Breathe and focus",
                         style: TextStyle(color: Colors.white, fontSize: 30),
                       ),
                       InkWell(
@@ -81,13 +80,10 @@ class _ContentCardsState extends State<ContentCards> {
                                 color: Colors.white,
                                 size: iconRightSize(),
                               )
-                            : Container(
-                                constraints: BoxConstraints(maxHeight: 100),
-                                child: Icon(
-                                  Icons.play_circle_outline,
-                                  color: Colors.white,
-                                  size: iconRightSize(),
-                                ),
+                            : Icon(
+                                Icons.play_circle_outline,
+                                color: Colors.white,
+                                size: iconRightSize(),
                               ),
                       ),
                       volumeSlider(),
@@ -103,13 +99,16 @@ class _ContentCardsState extends State<ContentCards> {
   }
 
   double iconRightSize() {
-    if (MediaQuery.of(context).orientation == Orientation.landscape || Platform.isMacOS || Platform.isWindows || Platform.isLinux) {
+    if (MediaQuery.of(context).orientation == Orientation.landscape ||
+        Platform.isMacOS ||
+        Platform.isWindows ||
+        Platform.isLinux) {
       return MediaQuery.of(context).size.width * .1;
     } else {
       return MediaQuery.of(context).size.width * .4;
     }
   }
- 
+
   playLocal() async {
     if (fixedPlayer.state == AudioPlayerState.PAUSED) {
       fixedPlayer.resume();
