@@ -1,14 +1,17 @@
+import 'dart:math';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:relaxing_rain/kConstant.dart';
 import 'dart:io';
 import 'package:relaxing_rain/widgets/custom_slider_thumb.dart';
 
 class ContentCards extends StatefulWidget {
   int selectedIndex;
   Color bgColor;
+  String assetName;
 
-  ContentCards({this.selectedIndex, this.bgColor});
+  ContentCards({this.selectedIndex, this.bgColor, this.assetName});
 
   @override
   _ContentCardsState createState() => _ContentCardsState();
@@ -31,6 +34,7 @@ class _ContentCardsState extends State<ContentCards> {
 
   @override
   Widget build(BuildContext context) {
+
     return Expanded(
       child: Column(
         children: <Widget>[
@@ -60,8 +64,7 @@ class _ContentCardsState extends State<ContentCards> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Text(
-                        "Breathe and focus",
+                      Text(kSentences[widget.selectedIndex],
                         style: TextStyle(color: Colors.white, fontSize: 30),
                       ),
                       InkWell(
@@ -97,7 +100,7 @@ class _ContentCardsState extends State<ContentCards> {
       ),
     );
   }
-
+ 
   double iconRightSize() {
     if (MediaQuery.of(context).orientation == Orientation.landscape ||
         Platform.isMacOS ||
@@ -114,7 +117,7 @@ class _ContentCardsState extends State<ContentCards> {
       fixedPlayer.resume();
     } else {
       fixedPlayer =
-          await audioCache.loop('rain.mp3', volume: 0.7, stayAwake: true);
+          await audioCache.loop(widget.assetName, volume: 0.7, stayAwake: true);
     }
   }
 

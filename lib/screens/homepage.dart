@@ -117,14 +117,15 @@ class _HomepageState extends State<Homepage> {
   }
 
   Widget getRightContentCards(int selectedIndex) {
+
     switch (selectedIndex) {
       case 0:
         return ContentCards(
-            selectedIndex: _selectedIndex, bgColor: kBlueCardBackground);
+            selectedIndex: _selectedIndex, bgColor: kBlueCardBackground, assetName: "rain.mp3",);
         break;
       case 1:
         return ContentCards(
-            selectedIndex: _selectedIndex, bgColor: kBlueishDye);
+            selectedIndex: _selectedIndex, bgColor: kBlueishDye, assetName: "thunder.mp3");
         break;
       case 2:
         return ContentCards(
