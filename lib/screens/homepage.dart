@@ -101,6 +101,15 @@ class _HomepageState extends State<Homepage> {
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
+
+                    NavigationRailDestination(
+                      icon: Icon(Icons.clear_all, color: Colors.white),
+                      selectedIcon: Icon(Icons.clear_all, color: Colors.white),
+                      label: Text(
+                        'Wind',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
                   ],
                 ),
                 getRightContentCards(_selectedIndex),
@@ -131,6 +140,15 @@ class _HomepageState extends State<Homepage> {
           audioCache: audioCache,
           fixedPlayer: fixedPlayer,
           assetName: "thunder.mp3",
+        );
+        break;
+      case 2:
+        return ContentCards(
+          selectedIndex: _selectedIndex,
+          bgColor: kGreenAlgua,
+          audioCache: audioCache,
+          fixedPlayer: fixedPlayer,
+          assetName: "wind.mp3",
         );
         break;
       default:
