@@ -1,2 +1,2 @@
-const String kProjectId = "";
-const String kSecretId = "";
+const String kProjectId = "test";
+const String kSecretId = "test";

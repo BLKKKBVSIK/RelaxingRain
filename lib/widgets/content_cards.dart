@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:relaxing_rain/kConstant.dart';
 import 'dart:io';
 import 'package:relaxing_rain/widgets/custom_slider_thumb.dart';
+import 'package:wiredash/wiredash.dart';
 
 class ContentCards extends StatefulWidget {
   int selectedIndex;
@@ -34,7 +35,6 @@ class _ContentCardsState extends State<ContentCards> {
 
   @override
   Widget build(BuildContext context) {
-
     return Expanded(
       child: Column(
         children: <Widget>[
@@ -50,6 +50,20 @@ class _ContentCardsState extends State<ContentCards> {
               ),
             ),
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              InkWell(
+                onTap: () {
+                  Wiredash.of(context).show();
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text("Report a bug", style: TextStyle(color: kBlueCardBackground.withOpacity(1)),),
+                ),
+              ),
+            ],
+          ),
           Expanded(
             child: Container(
               height: MediaQuery.of(context).size.height,
@@ -64,7 +78,8 @@ class _ContentCardsState extends State<ContentCards> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Text(kSentences[widget.selectedIndex],
+                      Text(
+                        kSentences[widget.selectedIndex],
                         style: TextStyle(color: Colors.white, fontSize: 30),
                       ),
                       InkWell(
@@ -100,7 +115,7 @@ class _ContentCardsState extends State<ContentCards> {
       ),
     );
   }
- 
+
   double iconRightSize() {
     if (MediaQuery.of(context).orientation == Orientation.landscape ||
         Platform.isMacOS ||
@@ -165,7 +180,6 @@ class _ContentCardsState extends State<ContentCards> {
                   data: SliderTheme.of(context).copyWith(
                     activeTrackColor: Colors.white.withOpacity(1),
                     inactiveTrackColor: Colors.white.withOpacity(.5),
-
                     trackHeight: 4.0,
                     thumbShape: CustomSliderThumbCircle(
                       thumbRadius: 48 * .4,

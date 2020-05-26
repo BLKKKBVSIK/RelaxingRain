@@ -2,32 +2,49 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:relaxing_rain/kConstant.dart';
+import 'package:relaxing_rain/kSecrets.dart';
 import 'package:relaxing_rain/screens/homepage.dart';
+import 'package:wiredash/wiredash.dart';
 
 void main() => runApp(
       DevicePreview(
         enabled: false, //!kReleaseMode,
         builder: (context) => MyApp(),
       ),
-);
+    );
 
 class MyApp extends StatelessWidget {
+  final _navigatorKey = GlobalKey<NavigatorState>();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     var routeName;
-    return MaterialApp(
-      locale: DevicePreview.of(context).locale, // <--- Add the locale
-      builder: DevicePreview.appBuilder, // <--- Add the builder
-      title: 'Relaxing Rain',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return Wiredash(
+      projectId: kProjectId,
+      secret: kSecretId,
+      navigatorKey: _navigatorKey,
+      theme: WiredashThemeData(
+        primaryColor: kBlueCardBackground.withOpacity(.6),
+        secondaryColor: kBlueCardBackground.withOpacity(.9),
+        backgroundColor: kBlueCardBackground.withOpacity(1),
       ),
-      home: MyHomePage(),
-      routes: {
-        Homepage.routeName: (BuildContext ctx) => Homepage(),
-      },
+      options: WiredashOptionsData(
+        showDebugFloatingEntryPoint: false,
+      ),
+      child: MaterialApp(
+        navigatorKey: _navigatorKey,
+        locale: DevicePreview.of(context).locale, // <--- Add the locale
+        builder: DevicePreview.appBuilder, // <--- Add the builder
+        title: 'Relaxing Rain',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: MyHomePage(),
+        routes: {
+          Homepage.routeName: (BuildContext ctx) => Homepage(),
+        },
+      ),
     );
   }
 }
