@@ -11,30 +11,21 @@ class ContentCards extends StatefulWidget {
   int selectedIndex;
   Color bgColor;
   String assetName;
+  AudioPlayer fixedPlayer;
+  AudioCache audioCache;
 
-  ContentCards({this.selectedIndex, this.bgColor, this.assetName});
+  ContentCards({this.selectedIndex, this.bgColor, this.assetName, this.audioCache, this.fixedPlayer});
 
   @override
   _ContentCardsState createState() => _ContentCardsState();
 }
 
 class _ContentCardsState extends State<ContentCards> {
-  bool playState = false;
-  static AudioPlayer fixedPlayer = AudioPlayer(mode: PlayerMode.MEDIA_PLAYER);
-  AudioCache audioCache = AudioCache(fixedPlayer: fixedPlayer);
   double volumeValue = 70.0;
 
   @override
-  void initState() {
-    if (fixedPlayer.state == AudioPlayerState.PLAYING) {
-      playState = true;
-    } else {
-      playState = false;
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
+
     return Expanded(
       child: Column(
         children: <Widget>[
@@ -84,15 +75,11 @@ class _ContentCardsState extends State<ContentCards> {
                       ),
                       InkWell(
                         onTap: () {
-                          fixedPlayer.state == AudioPlayerState.PLAYING
+                          widget.fixedPlayer.state == AudioPlayerState.PLAYING
                               ? pauseLocal()
                               : playLocal();
-                          setState(() {
-                            playState = !playState;
-                            iconRightSize();
-                          });
                         },
-                        child: playState
+                        child: widget.fixedPlayer.state == AudioPlayerState.PLAYING
                             ? Icon(
                                 Icons.pause_circle_outline,
                                 color: Colors.white,
@@ -128,16 +115,16 @@ class _ContentCardsState extends State<ContentCards> {
   }
 
   playLocal() async {
-    if (fixedPlayer.state == AudioPlayerState.PAUSED) {
-      fixedPlayer.resume();
+    if (widget.fixedPlayer.state == AudioPlayerState.PAUSED) {
+      widget.fixedPlayer.resume();
     } else {
-      fixedPlayer =
-          await audioCache.loop(widget.assetName, volume: 0.7, stayAwake: true);
+      widget.fixedPlayer =
+          await widget.audioCache.loop(widget.assetName, volume: 0.7, stayAwake: true);
     }
   }
 
   pauseLocal() async {
-    fixedPlayer.pause();
+    widget.fixedPlayer.pause();
   }
 
   Widget volumeSlider() {
@@ -199,7 +186,7 @@ class _ContentCardsState extends State<ContentCards> {
                         setState(() {
                           volumeValue = value;
                         });
-                        fixedPlayer.setVolume(value / 100);
+                        widget.fixedPlayer.setVolume(value / 100);
                       }),
                 ),
               ),

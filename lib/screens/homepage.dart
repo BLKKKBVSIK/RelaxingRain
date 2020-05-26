@@ -18,7 +18,9 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   int _selectedIndex = 0;
   Ticker _ticker;
-  //Image _blueBg;
+  static AudioPlayer fixedPlayer = AudioPlayer(mode: PlayerMode.MEDIA_PLAYER);
+  AudioCache audioCache = AudioCache(fixedPlayer: fixedPlayer);
+  bool playState = false;
 
   @override
   void dispose() {
@@ -74,6 +76,9 @@ class _HomepageState extends State<Homepage> {
                   backgroundColor: Colors.transparent,
                   selectedIndex: _selectedIndex,
                   onDestinationSelected: (int index) {
+                    fixedPlayer.stop();
+                    fixedPlayer.state = AudioPlayerState.COMPLETED;
+                    playState = false;
                     setState(() {
                       _selectedIndex = index;
                     });
@@ -81,18 +86,18 @@ class _HomepageState extends State<Homepage> {
                   labelType: NavigationRailLabelType.selected,
                   destinations: [
                     NavigationRailDestination(
-                      icon: Icon(Icons.ac_unit, color: Colors.white),
-                      selectedIcon: Icon(Icons.ac_unit, color: Colors.white),
+                      icon: Icon(Icons.grain, color: Colors.white),
+                      selectedIcon: Icon(Icons.grain, color: Colors.white),
                       label: Text(
                         'Rain',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
                     NavigationRailDestination(
-                      icon: Icon(Icons.bookmark_border, color: Colors.white),
-                      selectedIcon: Icon(Icons.book, color: Colors.white),
+                      icon: Icon(Icons.cloud, color: Colors.white),
+                      selectedIcon: Icon(Icons.cloud, color: Colors.white),
                       label: Text(
-                        'Rain2',
+                        'Thunder',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -122,19 +127,26 @@ class _HomepageState extends State<Homepage> {
         return ContentCards(
           selectedIndex: _selectedIndex,
           bgColor: kBlueCardBackground,
+          audioCache: audioCache,
+          fixedPlayer: fixedPlayer,
           assetName: "rain.mp3",
         );
         break;
       case 1:
         return ContentCards(
-            selectedIndex: _selectedIndex,
-            bgColor: kBlueishDye,
-            assetName: "thunder.mp3");
+          selectedIndex: _selectedIndex,
+          bgColor: kBlueishDye,
+          audioCache: audioCache,
+          fixedPlayer: fixedPlayer,
+          assetName: "thunder.mp3",
+        );
         break;
       case 2:
         return ContentCards(
           selectedIndex: _selectedIndex,
           bgColor: Colors.deepOrange,
+          audioCache: audioCache,
+          fixedPlayer: fixedPlayer,
         );
         break;
       default:
