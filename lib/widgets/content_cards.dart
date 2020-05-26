@@ -50,7 +50,7 @@ class _ContentCardsState extends State<ContentCards> {
                 },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Text("Report a bug", style: TextStyle(color: kBlueCardBackground.withOpacity(1)),),
+                  child: Text("Report a bug", style: TextStyle(color: widget.bgColor.withOpacity(1)),),
                 ),
               ),
             ],
@@ -70,7 +70,7 @@ class _ContentCardsState extends State<ContentCards> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
                       Text(
-                        kSentences[widget.selectedIndex],
+                        finalSentences[widget.selectedIndex],
                         style: TextStyle(color: Colors.white, fontSize: 30),
                       ),
                       InkWell(

@@ -101,14 +101,6 @@ class _HomepageState extends State<Homepage> {
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
-                    NavigationRailDestination(
-                      icon: Icon(Icons.star_border, color: Colors.white),
-                      selectedIcon: Icon(Icons.star, color: Colors.white),
-                      label: Text(
-                        'Rain3',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
                   ],
                 ),
                 getRightContentCards(_selectedIndex),
@@ -139,14 +131,6 @@ class _HomepageState extends State<Homepage> {
           audioCache: audioCache,
           fixedPlayer: fixedPlayer,
           assetName: "thunder.mp3",
-        );
-        break;
-      case 2:
-        return ContentCards(
-          selectedIndex: _selectedIndex,
-          bgColor: Colors.deepOrange,
-          audioCache: audioCache,
-          fixedPlayer: fixedPlayer,
         );
         break;
       default:

@@ -97,6 +97,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             InkWell(
               onTap: () {
+                for(int i = 0; i < 3; i++) {
+                  kSentences.shuffle();
+                  finalSentences.add(kSentences.first);
+                  kSentences.removeAt(0);
+                }
                 Navigator.of(context).pushNamed(Homepage.routeName);
               },
               child: Container(
