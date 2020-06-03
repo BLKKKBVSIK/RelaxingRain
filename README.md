@@ -8,7 +8,8 @@
 
 # RelaxingRain
 
-RelaxingRain is a Flutter app made for relaxing or focusing using animated background and ambiant sound.
+RelaxingRain is a Flutter app that allows you to relax with chill elemental and ambient sounds like rain, thunder or wind with a relaxing animated background.
+Internet is not needed to download any of the ambient sounds.
 
 ## TODO
 
